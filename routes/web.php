@@ -19,9 +19,9 @@ Route::group(['middleware' => ['web']], function() {
     Route::get('about', [App\Http\Controllers\PagesController::class, 'getAbout'])->name('about');
     Route::get('contact', [App\Http\Controllers\PagesController::class, 'getContact'])->name('contact');
     Route::post('contact', [App\Http\Controllers\PagesController::class, 'postContact'])->name('postContact');
-    Route::resource('posts', [App\Http\Controllers\PostController::class]);
-    Route::resource('categories', [App\Http\Controllers\CategoryController::class,])->except('create');
-    Route::resource('tags', [App\Http\Controllers\TagController::class])->except('create');
+    Route::resource('posts', App\Http\Controllers\PostController::class);
+    Route::resource('categories', App\Http\Controllers\CategoryController::class,)->except('create');
+    Route::resource('tags', App\Http\Controllers\TagController::class)->except('create');
 
     Route::get('blog/{slug}',[App\Http\Controllers\BlogController::class, 'getSingle'])->where('slug', '[\w\d\-\_]+')->name('blog.single');
     Route::get('blog', [App\Http\Controllers\BlogController::class, 'getIndex'])->name('blog.index');
